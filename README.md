@@ -1,8 +1,8 @@
-The challenge was made on ruby, so if you don't have ruby installed in your terminal, follow the instructions below:
+The challenge was made with ruby 2.6, so if you don't have ruby installed in your terminal, follow the instructions below:
 
 Run this command, it will take a while (5-10 minutes):
 
-   rbenv install 2.7.4
+   rbenv install 2.6
 
 Then restart your terminal again (close it and reopen it). then run:
 

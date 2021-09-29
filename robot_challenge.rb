@@ -1,60 +1,113 @@
-# PLACE: will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. The origin (0,0) can be considered to be the SOUTH WEST most corner
-
-# MOVE: will move the toy robot one unit forward in the direction it is currently facing.
-
-# LEFT and RIGHT: will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
-
-# REPORT: will announce the X,Y and facing of the robot
 def robot
-  puts "Position X:"
-  x = gets.chomp
+  puts "--------------------"
+  puts "------WELCOME-------"
+  puts "-------TO-THE-------"
+  puts "---ROBOT-CHALLENGE--"
+  puts "--------------------"
 
-  puts "Position Y:"
-  y = gets.chomp
+  puts "Input X position:"
+  x = gets.chomp.to_i
 
-  puts "Facing position (WEST, NORTH, EAST, SOUTH):"
-  face = gets.chomp
+  puts "Input Y position:"
+  y = gets.chomp.to_i
 
-  def place(x,y,face)
-    if [0,1,2,3,4].include?(x.to_i) && [0,1,2,3,4].include?(y.to_i) && ["WEST", "NORTH", "EAST", "SOUTH"].include?(face)
+  puts "Input F position (WEST, NORTH, EAST, SOUTH):"
+  f = gets.chomp
 
-      print "PLACE #{x},#{y},#{face}"
-    else
-      puts "PLACE out of boundaries, try again!"
-    end
+  if [0,1,2,3,4].include?(x) && [0,1,2,3,4].include?(y) && ["WEST", "NORTH", "EAST", "SOUTH"].include?(f)
+    puts "PLACE #{x},#{y},#{f}"
+  else
+    puts "Incorrect PLACE, try again!"
+    puts robot
   end
 
-  puts place(x,y,face)
+  puts ""
+  puts "Next command: MOVE, LEFT, RIGHT, REPORT, PLACE or QUIT GAME"
+  puts ""
 
-  def move(x,y,face)
-    if place(x,y,face) == true && face == "WEST" && [0,1,2,3,4].include?(x)
-      x = x + 1
-      return x
-    elsif place(x,y,face) == true && face == "EAST" && [0,1,2,3,4].include?(x) == true
-      x = x - 1
-      return x
-    elsif place(x,y,face) == true && face == "NORTH" && [0,1,2,3,4].include?(y)
-      y = y + 1
-      return y
-    elsif place(x, y, face) == true && face == "SOUTH" && [0,1,2,3,4].include?(y) == true
-      y = y - 1
-      return y
+  user_input = nil
+  until user_input == "QUIT GAME"
+    user_input = gets.chomp
+
+    if [0,1,2,3,4].include?(x) == true && [0,1,2,3,4].include?(y) == true
+      case user_input
+      when "MOVE"
+        case
+        when f == "WEST"
+          x = x-1
+        when f == "EAST"
+          x = x+1
+        when f == "NORTH"
+          y = y+1
+        when f == "SOUTH"
+          y = y-1
+        else
+          puts "Out of Boundary"
+        end
+      when "LEFT"
+        array = ["WEST", "NORTH", "EAST", "SOUTH"]
+        case
+        when f == "WEST"
+          counter = 0
+          f = array[counter - 1]
+        when  f == "NORTH"
+          counter = 1
+          f = array[counter - 1]
+        when f == "EAST"
+          counter = 2
+          f = array[counter - 1]
+        when f == "SOUTH"
+          counter = 3
+          f = array[counter - 1]
+        else
+        end
+      when "RIGHT"
+        array = ["WEST", "SOUTH", "EAST", "NORTH"]
+        case
+        when f == "WEST"
+          counter = 0
+          f = array[counter - 1]
+        when  f == "SOUTH"
+          counter = 1
+          f  = array[counter - 1]
+        when f == "EAST"
+          counter = 2
+          f = array[counter - 1]
+        when f == "NORTH"
+          counter = 3
+          f = array[counter - 1]
+        else
+        end
+      when "REPORT"
+        puts ""
+        puts ""
+        puts "Output: #{x},#{y},#{f}"
+      when "QUIT GAME"
+        puts "good bye!"
+      when "PLACE"
+        puts robot
+      else
+        puts "try again!"
+      end
     else
-      puts "Out of boundary"
+      case user_input
+      when "QUIT GAME"
+        puts "good bye!"
+      when "PLACE"
+        puts robot
+      else
+        puts "command ignored"
+      end
     end
-  end
-
-  puts "What Do You Want to do: MOVE, LEFT, RIGHT or REPORT"
-  input = gets.chomp
-
-  if input == "MOVE"
-    puts move(x,y,face)
-    puts "PLACE: #{x}, #{y}, #{face}"
   end
 end
 
-
 puts robot
+
+
+
+
+
 
 
 

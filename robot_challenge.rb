@@ -1,3 +1,4 @@
+
 def robot
   puts "--------------------"
   puts "------WELCOME-------"
@@ -5,6 +6,7 @@ def robot
   puts "---ROBOT-CHALLENGE--"
   puts "--------------------"
 
+  # user X, Y and FACE inputs
   puts "Input X position:"
   x = gets.chomp.to_i
 
@@ -14,6 +16,7 @@ def robot
   puts "Input F position (WEST, NORTH, EAST, SOUTH):"
   f = gets.chomp
 
+  # making sure the input is valid
   if [0,1,2,3,4].include?(x) && [0,1,2,3,4].include?(y) && ["WEST", "NORTH", "EAST", "SOUTH"].include?(f)
     puts "PLACE #{x},#{y},#{f}"
   else
@@ -24,11 +27,11 @@ def robot
   puts ""
   puts "Next command: MOVE, LEFT, RIGHT, REPORT, PLACE or QUIT GAME"
   puts ""
-
+  # ROBOT actions
   user_input = nil
   until user_input == "QUIT GAME"
     user_input = gets.chomp
-
+    # execute command if X and Y are on the table
     if [0,1,2,3,4].include?(x) == true && [0,1,2,3,4].include?(y) == true
       case user_input
       when "MOVE"
@@ -103,20 +106,4 @@ def robot
 end
 
 puts robot
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
